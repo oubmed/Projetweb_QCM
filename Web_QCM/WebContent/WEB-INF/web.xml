@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<display-name>ProjetQCM</display-name>
+  <welcome-file-list>
+    <welcome-file>authentification.jsp</welcome-file>
+  </welcome-file-list>
+
+    <filter>
+        <filter-name>Set Character Encoding</filter-name>
+        <filter-class>org.apache.catalina.filters.SetCharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>ignore</param-name>
+            <param-value>false</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>Set Character Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <filter>
+        <filter-name>PrechargementFilter</filter-name>
+        <filter-class>filters.PrechargementFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>PrechargementFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+    <listener>
+	<listener-class>config.InitialisationDaoFactory</listener-class>
+    </listener>
+    
+	<servlet>
+		<servlet-name>CreationEtudiant</servlet-name>
+		<servlet-class>servlets.CreationEtudiant</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/fichiers/images/</param-value> 
+		</init-param>
+		<multipart-config>
+			<location>c:/fichiers/images</location>
+			<max-file-size>2097152</max-file-size> <!-- 2 Mo -->
+			<max-request-size>10485760</max-request-size> <!-- 5 x 2Mo -->
+			<file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
+		</multipart-config>
+	</servlet>
+	<servlet>
+		<servlet-name>ListeEtudiants</servlet-name>
+		<servlet-class>servlets.ListeEtudiants</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SuppressionEtudiant</servlet-name>
+		<servlet-class>servlets.SuppressionEtudiant</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>CreationProfesseur</servlet-name>
+		<servlet-class>servlets.CreationProfesseur</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/fichiers/images/</param-value> 
+		</init-param>
+		<multipart-config>
+			<location>c:/fichiers/images</location>
+			<max-file-size>2097152</max-file-size> <!-- 2 Mo -->
+			<max-request-size>10485760</max-request-size> <!-- 5 x 2Mo -->
+			<file-size-threshold>1048576</file-size-threshold> <!-- 1 Mo -->
+		</multipart-config>
+	</servlet>
+	<servlet>
+		<servlet-name>ListeProfesseur</servlet-name>
+		<servlet-class>servlets.ListeProfesseur</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SuppressionProfesseur</servlet-name>
+		<servlet-class>servlets.SuppressionProfesseur</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>Image</servlet-name>
+		<servlet-class>servlets.Image</servlet-class>
+		<init-param>
+			<param-name>chemin</param-name> 
+			<param-value>/fichiers/images/</param-value> 
+		</init-param>
+	</servlet>
+
+	
+	<servlet-mapping>
+		<servlet-name>CreationEtudiant</servlet-name>
+		<url-pattern>/creationEtudiant</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListeEtudiants</servlet-name>
+		<url-pattern>/listeEtudiants</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SuppressionEtudiant</servlet-name>
+		<url-pattern>/suppressionEtudiant</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>CreationProfesseur</servlet-name>
+		<url-pattern>/creationProfesseur</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>ListeProfesseur</servlet-name>
+		<url-pattern>/listeProfesseur</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SuppressionProfesseur</servlet-name>
+		<url-pattern>/suppressionProfesseur</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Image</servlet-name>
+		<url-pattern>/images/*</url-pattern>
+	</servlet-mapping>
+</web-app>
